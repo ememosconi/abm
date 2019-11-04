@@ -6,6 +6,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {  fetchCustomers } from '../actions/fetchCustomers';
 import PropTypes from 'prop-types';
+import { getCustomers } from '../selectors/customers';
 
 
 
@@ -49,22 +50,11 @@ CustomersContainer.prototypes = {
 
 CustomersContainer.defaultProps ={
     customers: [
-        {
-            "dni":"30661300",
-            "name": "mauro Mosconi",
-            "age":35
-        },
-        {
-            "dni":"22456444",
-            "name": "juan perez",
-            "age":31
-        },
-        {
-            "dni":"32222344",
-            "name": "Miguel perez",
-            "age":22
-        }
     ]
 }
 
-export default  withRouter(connect(null,{fetchCustomers}) (CustomersContainer));
+const mapStateToProps = state =>({
+    customers: getCustomers(state)
+});
+
+export default  withRouter(connect(mapStateToProps,{fetchCustomers}) (CustomersContainer));

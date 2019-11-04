@@ -1,0 +1,36 @@
+{
+  "customers":[
+    {
+        "dni":"30661300",
+        "name": "mauro Mosconi",
+        "age":35
+    },
+    {
+        "dni":"22456444",
+        "name": "juan perez",
+        "age":31
+    },
+    {
+        "dni":"32222344",
+        "name": "Miguel perez",
+        "age":22
+    }
+],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
