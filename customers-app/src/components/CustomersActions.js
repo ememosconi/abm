@@ -1,0 +1,18 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import '../index.css';
+const CustomersActions = ({children}) => {
+    return (
+        <div className="customer-actions">
+            <div>
+                <div>{children}</div>
+            </div>
+        </div>
+    );
+};
+
+CustomersActions.propTypes = {
+    children:PropTypes.node.isRequired,
+};
+
+export default CustomersActions;
