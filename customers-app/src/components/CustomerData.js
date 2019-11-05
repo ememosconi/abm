@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CustomerData = ({name,dni,age}) => {
+const CustomerData = ({dni,name,age}) => {
     return (
-        <div>
+        <div key={dni}>
             <div className="customer-data">
                 <h2>Datos del cliente</h2>
-                <div><strong>Nombre</strong><i>{name}</i></div>/div>
+                <div><strong>Nombre</strong><i>{name}</i></div>
                 <div><strong>DNI</strong><i>{dni}</i></div>
-                <div><stro>Edad</stro><i>{age}</i></div>
+                <div><strong>Edad</strong><i>{age}</i></div>
             </div>
         </div>
     );

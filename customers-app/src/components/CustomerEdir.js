@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CustomerEdir = (name, dni, age) => {
+const CustomerEdir = ({name, dni, age}) => {
     return (
-        <div>
+        <div key={dni} >
             <h2>Edicion del cliente</h2>
             <h3>{name}/{dni}/{age}</h3>
         </div>
