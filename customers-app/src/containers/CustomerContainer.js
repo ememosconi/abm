@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import AppFrame from '../components/AppFrame';
-import {getCustomerByDni } from '../selectors/customers';
+import {getCustomerByDni, getCustomer } from '../selectors/customers';
 import {withRouter,Route} from 'react-router-dom';
 import CustomerEdir from '../components/CustomerEdir';
 import CustomerData from '../components/CustomerData';
 import {  fetchCustomers } from '../actions/fetchCustomers';
 import {  updateCustomer } from '../actions/updateCustomer';
+import {  fetchCustomer} from '../actions/fetchCustomer';
 
 class CustomerContainer extends Component {
 
     componentDidMount(){
-        if(!this.props.customer){
-            this.props.fetchCustomers();
-        }
+        this.props.fetchCustomer(this.props.dni)
     }
 
 
@@ -54,11 +53,11 @@ class CustomerContainer extends Component {
 }
 
 CustomerContainer.propTypes = {
-    customer:PropTypes.object.isRequired,
+    customer:PropTypes.object,
 };
 
 const mapStateToProps = (state, props)=>({
-    customer: getCustomerByDni(state,props)
+    customer: getCustomer(state)
 });
 
 
@@ -68,5 +67,6 @@ const mapStateToProps = (state, props)=>({
 export default withRouter(connect(mapStateToProps,
     {
         fetchCustomers,
-        updateCustomer
+        updateCustomer,
+        fetchCustomer
     })(CustomerContainer))
