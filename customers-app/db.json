@@ -1,21 +1,24 @@
 {
-  "customers":[
+  "customers": [
     {
-        "dni":"30661300",
-        "name": "mauro Mosconi",
-        "age":35
+      "id": "30661300",
+      "dni": "30661300",
+      "name": "mauro Mosconii",
+      "age": "34"
     },
     {
-        "dni":"22456444",
-        "name": "juan perez",
-        "age":31
+      "id": "22456444",
+      "dni": "22456444",
+      "name": "juan perez",
+      "age": 31
     },
     {
-        "dni":"32222344",
-        "name": "Miguel perez",
-        "age":22
+      "id": "32222344",
+      "dni": "32222344",
+      "name": "Miguel perez",
+      "age": 22
     }
-],
+  ],
   "posts": [
     {
       "id": 1,

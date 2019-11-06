@@ -2,19 +2,40 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import AppFrame from '../components/AppFrame';
-import {  fetchCustomer } from '../actions/fetchCustomers';
-import { getCustomer, getCustomerByDni } from '../selectors/customers';
+import {getCustomerByDni } from '../selectors/customers';
 import {withRouter,Route} from 'react-router-dom';
-import CustomerEdir from '../components/CustomerEdir'
-import CustomerData from '../components/CustomerData'
+import CustomerEdir from '../components/CustomerEdir';
+import CustomerData from '../components/CustomerData';
+import {  fetchCustomers } from '../actions/fetchCustomers';
+import {  updateCustomer } from '../actions/updateCustomer';
 
 class CustomerContainer extends Component {
 
+    componentDidMount(){
+        if(!this.props.customer){
+            this.props.fetchCustomers();
+        }
+    }
+
+
+    handleSubmit = values =>{
+        console.log(JSON.stringify(values));
+        const {id} = values;
+        this.props.updateCustomer(id,values);
+    }
+
+    handleOnBack =() =>{
+        this.props.history.goBack();
+    }
 
     renderBody = () =>(
         <Route path="/customers/:dni/edit" children ={({match}) => {
             const CustomerControl = match?CustomerEdir:CustomerData
-            return <CustomerControl {...this.props.customer}></CustomerControl>
+            return <CustomerControl {...this.props.customer} 
+            handleCancel ={this.handleOnBack}
+            onSubmit={this.handleSubmit}>
+
+            </CustomerControl>
         }}/>
                                                         
     )
@@ -44,4 +65,8 @@ const mapStateToProps = (state, props)=>({
 
 
 
-export default withRouter(connect(mapStateToProps,null)(CustomerContainer))
+export default withRouter(connect(mapStateToProps,
+    {
+        fetchCustomers,
+        updateCustomer
+    })(CustomerContainer))
