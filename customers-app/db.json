@@ -9,7 +9,7 @@
     {
       "id": "22456444",
       "dni": "22456444",
-      "name": "juan perez",
+      "name": "juan pere",
       "age": 31
     },
     {
@@ -47,6 +47,12 @@
       "dni": "222222",
       "age": 55,
       "id": "6TQz9Fj"
+    },
+    {
+      "name": "nueo4",
+      "dni": "1231231",
+      "age": 55,
+      "id": "DJEIFbk"
     }
   ],
   "posts": [
