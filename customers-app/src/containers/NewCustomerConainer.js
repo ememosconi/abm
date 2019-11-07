@@ -4,11 +4,17 @@ import {connect} from 'react-redux';
 import AppFrame from '../components/AppFrame';
 import {withRouter} from 'react-router-dom';
 import CustomerEdir from '../components/CustomerEdir';
+import {createCustomer} from '../actions/createCustomer';
+import {SubmissionError} from 'redux-form'
 
 class NewCustomerConainer extends Component {
     
     handleSubmmit = values =>{
-
+       return this.props.createCustomer(values).catch(r =>{
+            console.log(r)
+            throw new SubmissionError(r);
+            
+        });
     }
 
     handleOnBack =() =>{
@@ -20,8 +26,9 @@ class NewCustomerConainer extends Component {
     }
 
     renderBody =() =>{
-        return <CustomerEdir onSubmmit = {this.handleSubmmit}
-        onSubmmitSucces = {this.handleSubmmitSucces}
+        return <CustomerEdir {...this.props.customer}
+         onSubmit = {this.handleSubmmit}
+        onSubmitSuccess = {this.handleSubmmitSucces}
         onBack = {this.handleOnBack}
         ></CustomerEdir>
     }
@@ -41,7 +48,7 @@ class NewCustomerConainer extends Component {
 }
 
 NewCustomerConainer.propTypes = {
-
+    createCustomer:PropTypes.func.isRequired,
 };
 
-export default withRouter( connect(null,null) (NewCustomerConainer));
+export default withRouter( connect(null,{createCustomer}) (NewCustomerConainer));

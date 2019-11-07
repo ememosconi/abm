@@ -9,9 +9,9 @@ const CustomerList = ({customers,urlPath}) => {
                 {
                     customers.map(customer => 
                     <CustomerListItem 
-                        key={customer.dni} 
+                        key={customer.id} 
                         name={customer.name} 
-                        dni={customer.dni} 
+                        id={customer.id} 
                         editAction={'Editar'} 
                         delAction={'Eliminar'}
                         urlPath={urlPath}>

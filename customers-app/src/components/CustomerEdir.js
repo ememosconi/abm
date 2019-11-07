@@ -36,7 +36,7 @@ const InputValidator = ({input,meta,type,label,name}) => (
 
 
 
-const CustomerEdir = ({name, dni, age,handleSubmit,submitting,onBack,pristine,submmitSucceed}) => {
+const CustomerEdir = ({name, dni, age,handleSubmit,submitting,onBack,pristine,submitSucceeded}) => {
     return (
         <div key={dni} >
             <h2>Edicion del cliente</h2>
@@ -67,7 +67,7 @@ const CustomerEdir = ({name, dni, age,handleSubmit,submitting,onBack,pristine,su
                         <button type ="button" onClick={onBack}>Cancelar</button>
                     </CustomersActions>
                     <Prompt
-                    when={!pristine && !submmitSucceed}
+                    when={!pristine && !submitSucceeded}
                     message="Se perderan los cambios">
                         
                     </Prompt>
