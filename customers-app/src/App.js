@@ -4,13 +4,13 @@ import './App.css';
 import HomeContainer from './containers/HomeContainer';
 import CustomersContainer from './containers/CustomersContainer';
 import CustomerContainer from './containers/CustomerContainer';
+import NewCustomerConainer from './containers/NewCustomerConainer';
 
 class App extends Component {
   
   renderHome = () => <HomeContainer></HomeContainer>
-  renderCustomerContainer = () => <h1>Customer container</h1>
   renderCustomerListContainer = () => <CustomersContainer></CustomersContainer>
-  renderCustomerNewContainer = () => <h1>Customer New container</h1>
+  
   
   render(){
     return (
@@ -19,7 +19,7 @@ class App extends Component {
           <Route exact path='/' component={this.renderHome}/>
           <Route exact path='/customers' component={this.renderCustomerListContainer}/>
           <Switch>
-            <Route path='/customers/new' component={this.renderCustomerNewContainer}/>
+            <Route path='/customers/new' component={NewCustomerConainer}/>
             <Route path='/customers/:dni' render={props => <CustomerContainer dni={props.match.params.dni}/>}/>
           </Switch>
         </div>

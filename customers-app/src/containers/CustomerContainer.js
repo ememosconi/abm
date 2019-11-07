@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import AppFrame from '../components/AppFrame';
-import {getCustomerByDni, getCustomer } from '../selectors/customers';
+import { getCustomer } from '../selectors/customers';
 import {withRouter,Route} from 'react-router-dom';
 import CustomerEdir from '../components/CustomerEdir';
 import CustomerData from '../components/CustomerData';
 import {  fetchCustomers } from '../actions/fetchCustomers';
 import {  updateCustomer } from '../actions/updateCustomer';
 import {  fetchCustomer} from '../actions/fetchCustomer';
+import {SubmissionError} from 'redux-form'
 
 class CustomerContainer extends Component {
 
@@ -20,10 +21,18 @@ class CustomerContainer extends Component {
     handleSubmit = values =>{
         console.log(JSON.stringify(values));
         const {id} = values;
-        this.props.updateCustomer(id,values);
+        return this.props.updateCustomer(id,values).catch(r =>{
+            console.log(r)
+            throw new SubmissionError(r);
+            
+        });
     }
 
     handleOnBack =() =>{
+        this.props.history.goBack();
+    }
+
+    handleSubmitSuccess =()=>{
         this.props.history.goBack();
     }
 
@@ -31,8 +40,9 @@ class CustomerContainer extends Component {
         <Route path="/customers/:dni/edit" children ={({match}) => {
             const CustomerControl = match?CustomerEdir:CustomerData
             return <CustomerControl {...this.props.customer} 
-            handleCancel ={this.handleOnBack}
-            onSubmit={this.handleSubmit}>
+            onSubmit={this.handleSubmit}
+            onSubmitSuccess ={this.handleSubmitSuccess}
+            onBack ={this.handleOnBack}>
 
             </CustomerControl>
         }}/>

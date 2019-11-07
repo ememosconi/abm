@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {reduxForm,Field}from 'redux-form'
+import {reduxForm,Field}from 'redux-form';
+import {Prompt} from 'react-router-dom'
 import { setPropsAsInitial } from '../helpers/setPropsAsInitial';
 import CustomersActions from './CustomersActions'
+import { toNumber } from '../helpers/utils';
 
 
 
@@ -34,7 +36,7 @@ const InputValidator = ({input,meta,type,label,name}) => (
 
 
 
-const CustomerEdir = ({name, dni, age,handleSubmit,submitting,handleCancel}) => {
+const CustomerEdir = ({name, dni, age,handleSubmit,submitting,onBack,pristine,submmitSucceed}) => {
     return (
         <div key={dni} >
             <h2>Edicion del cliente</h2>
@@ -56,12 +58,19 @@ const CustomerEdir = ({name, dni, age,handleSubmit,submitting,handleCancel}) => 
                     validate ={isNumber}
                     component={InputValidator} 
                     type="number"
-                    label="Edad"/>
+                    label="Edad"
+                    parse ={toNumber}/>
+
 
                     <CustomersActions>
-                        <button type="submit" disabled ={submitting}>Aceptar</button>
-                        <button onClick={handleCancel}>Cancelar</button>
+                        <button type="submit" disabled ={pristine || submitting}>Aceptar</button>
+                        <button type ="button" onClick={onBack}>Cancelar</button>
                     </CustomersActions>
+                    <Prompt
+                    when={!pristine && !submmitSucceed}
+                    message="Se perderan los cambios">
+                        
+                    </Prompt>
                 
             </form>
         </div>

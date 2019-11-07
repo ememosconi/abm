@@ -1,0 +1,1 @@
+export const toNumber = value => value && Number(value)

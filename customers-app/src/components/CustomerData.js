@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CustomersActions from './CustomersActions'
 
-const CustomerData = ({dni,name,age,handleCancel}) => {
+const CustomerData = ({dni,name,age,onBack}) => {
     return (
         <div key={dni}>
             <div className="customer-data">
@@ -12,7 +12,7 @@ const CustomerData = ({dni,name,age,handleCancel}) => {
                 <div><strong>Edad</strong><i>{age}</i></div>
             </div>
             <CustomersActions>
-            <button onClick={handleCancel}>Cancelar</button>
+            <button onClick={onBack}>Cancelar</button>
             </CustomersActions>
 
         </div>
