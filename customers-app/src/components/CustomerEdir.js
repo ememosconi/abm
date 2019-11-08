@@ -81,7 +81,7 @@ CustomerEdir.propTypes = {
     name: PropTypes.string.isRequired,
     dni:PropTypes.string.isRequired,
     age:PropTypes.number,
-    handleCancel:PropTypes.func.isRequired,
+    onBack:PropTypes.func.isRequired,
 };
 
 export default setPropsAsInitial(reduxForm({form:'CustomerEdir', validate})(CustomerEdir));

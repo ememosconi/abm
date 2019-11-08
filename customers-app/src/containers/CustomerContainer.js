@@ -36,16 +36,36 @@ class CustomerContainer extends Component {
         this.props.history.goBack();
     }
 
-    renderBody = () =>(
-        <Route path="/customers/:dni/edit" children ={({match}) => {
-            const CustomerControl = match?CustomerEdir:CustomerData
+    handleDelete = () =>{
+        console.log("estas borrando")
+    }
+
+    renderCustomerEdit = (isEdit,isDel) =>{
+        console.log(isEdit, isDel)
+        if(this.props.customer){
+            console.log("pase");
+            const CustomerControl = isEdit?CustomerEdir:CustomerData;
+            console.log(CustomerControl)
             return <CustomerControl {...this.props.customer} 
             onSubmit={this.handleSubmit}
             onSubmitSuccess ={this.handleSubmitSuccess}
-            onBack ={this.handleOnBack}>
+            onBack ={this.handleOnBack}
+            isDeleteAllowed ={!!isDel}
+            handleDelete={this.handleDelete}/>;
 
-            </CustomerControl>
-        }}/>
+            
+        }
+        return null;
+        
+    }
+
+    renderBody = () =>(
+        <Route path="/customers/:dni/edit" children ={
+            ({match: isEdit}) => (
+            <Route path="/customers/:dni/delete" children ={({match: isDel}) => (
+                this.renderCustomerEdit(isEdit,isDel)
+        )}/>)
+        }/>
                                                         
     )
     //<p>Datos del cliente "{this.props.customer.name}"</p>
